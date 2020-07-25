@@ -19,7 +19,9 @@
     "jsx": "preserve",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "types": ["reflect-metadata"]
+    "types": [
+      "reflect-metadata"
+    ]
   },
   "exclude": [
     "node_modules"

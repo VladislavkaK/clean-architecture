@@ -1,18 +1,26 @@
+import { injectable, inject } from "inversify";
+import { HttpClient } from "../../../core/base/http";
 
-
-interface IPostService {
+export interface IPostService {
     getPost(id: string);
     getAllPosts();
 }
 
+@injectable()
 export class PostService implements IPostService {
-    // _http: HttpClient
+    @inject("HttpClient") private _http: HttpClient;
+
+    // constructor(
+    //     @inject("HttpClient") http: HttpClient
+    // ) {
+    //     this._http = http;
+    // }
 
     getPost(id: string) {
-
+        
     }
 
     getAllPosts() {
-
+        return this._http.get('/posts')
     }
 }

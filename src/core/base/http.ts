@@ -1,5 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
-const http = axios.create();
+export interface HttpClient extends AxiosInstance {};
 
-export default axios;
+export const httpClient: HttpClient = axios.create({
+    baseURL: 'https://jsonplaceholder.typicode.com',
+});
