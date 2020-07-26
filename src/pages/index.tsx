@@ -7,6 +7,7 @@ const IndexPage = observer(() => {
 
     useEffect(() => {
         postStore.getAllPosts();
+        console.log('sucess')
     }, [])
 
     return (
