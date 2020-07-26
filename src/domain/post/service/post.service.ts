@@ -1,9 +1,10 @@
 import { injectable, inject } from "inversify";
 import { HttpClient } from "../../../core/base/http";
+import { PostEntity } from "../model/post.entity";
 
 export interface IPostService {
-    getPost(id: string);
-    getAllPosts();
+    getPost(id: string): Promise<PostEntity>;
+    getAllPosts(): Promise<PostEntity[]>;
 }
 
 @injectable()
@@ -16,11 +17,21 @@ export class PostService implements IPostService {
         this._http = http;
     }
 
-    getPost(id: string) {
-        
+    async getPost(id: string): Promise<PostEntity> {
+        try {
+            const resp = await this._http.get(`/posts/${id}`);
+            return resp.data;
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
-    getAllPosts() {
-        return this._http.get('/posts')
+    async getAllPosts(): Promise<PostEntity[]> {
+        try {
+            const resp = await this._http.get('/posts');
+            return resp.data;
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 }

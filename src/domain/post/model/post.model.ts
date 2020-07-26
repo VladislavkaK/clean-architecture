@@ -1,6 +1,7 @@
 export interface PostModel {
     id: number;
-    name: string;
-    family: string;
-    birthday: number;
+    userId: number;
+    title: string;
+    body: string;
+    isOdd: boolean;
 }

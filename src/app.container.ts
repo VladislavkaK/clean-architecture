@@ -3,6 +3,7 @@ import "reflect-metadata";
 import { HttpClient, httpClient } from "./core/base/http";
 import { IPostService, PostService } from "./domain/post/service/post.service";
 import { PostStore } from "./store/post/post.store";
+import { PostTransformerRepository, IPostTransformerRepository } from "./domain/post/transform/post.transformer-repository";
 
 export class AppContainer {
     _container: Container = null;
@@ -13,6 +14,7 @@ export class AppContainer {
     build() {
         this._container.bind<HttpClient>("HttpClient").toConstantValue(httpClient);
         this._container.bind<IPostService>("IPostService").to(PostService);
+        this._container.bind<IPostTransformerRepository>("IPostTransformerRepository").to(PostTransformerRepository);
         this._container.bind<PostStore>("PostStore").to(PostStore);
     }
 

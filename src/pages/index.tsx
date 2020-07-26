@@ -10,7 +10,11 @@ const IndexPage = observer(() => {
     }, [])
 
     return (
-        <div>{postStore.loading}</div>
+        <div>
+            {postStore.posts.map((post) => (
+                <div>{post.title}</div>
+            ))}
+        </div>
     )
 });
 
