@@ -8,13 +8,13 @@ export interface IPostService {
 
 @injectable()
 export class PostService implements IPostService {
-    @inject("HttpClient") private _http: HttpClient;
+    private _http: HttpClient;
 
-    // constructor(
-    //     @inject("HttpClient") http: HttpClient
-    // ) {
-    //     this._http = http;
-    // }
+    constructor(
+        @inject("HttpClient") http: HttpClient
+    ) {
+        this._http = http;
+    }
 
     getPost(id: string) {
         

@@ -4,7 +4,7 @@ import { injectable, inject } from 'inversify';
 
 @injectable()
 export class PostStore {
-    @inject("IPostService") _service: IPostService;
+    private _service: IPostService;
 
     @observable
     loading: string = 'sdsd';
@@ -15,11 +15,11 @@ export class PostStore {
     @observable
     error: any = null;
 
-    // constructor(
-    //     @inject("IPostService") service: IPostService
-    // ) {
-    //     this._service = service;
-    // }
+    constructor(
+        @inject("IPostService") service: IPostService
+    ) {
+        this._service = service;
+    }
 
     @action getAllPosts() {
         this._service.getAllPosts();
