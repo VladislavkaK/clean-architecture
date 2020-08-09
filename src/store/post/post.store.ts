@@ -3,6 +3,7 @@ import { injectable, inject } from 'inversify';
 import { IPostService } from '../../domain/post/service/post.service';
 import { PostModel } from '../../domain/post/model/post.model';
 import { IPostTransformerRepository } from '../../domain/post/transform/post.transformer-repository';
+import { CreatePostDTO } from '../../domain/post/dto/create-post-dto';
 
 @injectable()
 export class PostStore {
@@ -22,6 +23,9 @@ export class PostStore {
     isPostsFetching: boolean = false;
 
     @observable
+    createPostError: any = null;
+
+    @observable
     posts: PostModel[] = [];
 
     @observable
@@ -33,6 +37,15 @@ export class PostStore {
     ) {
         this._service = service;
         this._transformer = transformer;
+    }
+
+    @action async createPost(post: CreatePostDTO) {
+        try {
+            await this._service.createPost(post);
+            console.log('wait')
+        } catch (error) {
+            this.createPostError = error;
+        }
     }
 
     @action async getPost(id: string) {
