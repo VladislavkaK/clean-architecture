@@ -42,7 +42,6 @@ export class PostStore {
     @action async createPost(post: CreatePostDTO) {
         try {
             await this._service.createPost(post);
-            console.log('wait')
         } catch (error) {
             this.createPostError = error;
         }
