@@ -4,8 +4,10 @@ import { POST_TYPES } from '../domain/post/types';
 import { PostStore } from './post/post.store';
 import { appContainer } from '../pages/_app';
 
+export const postStore = appContainer.getContainer().get<PostStore>(POST_TYPES.PostStore);
+
 const storesCtx = React.createContext({
-    postStore: appContainer.getContainer().get<PostStore>(POST_TYPES.PostStore)
+    postStore,
 });
 
 export const useStores = () => React.useContext(storesCtx);
