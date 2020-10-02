@@ -1,5 +1,6 @@
 import { observable, action } from 'mobx';
 import { injectable, inject } from 'inversify';
+import { POST_TYPES } from "../../domain/post/types";
 import { IPostService } from '../../domain/post/service/post.service';
 import { PostModel } from '../../domain/post/model/post.model';
 import { IPostTransformerRepository } from '../../domain/post/transform/post.transformer-repository';
@@ -32,8 +33,8 @@ export class PostStore {
     postsError: any = null;
 
     constructor(
-        @inject("IPostService") service: IPostService,
-        @inject("IPostTransformerRepository") transformer: IPostTransformerRepository
+        @inject(POST_TYPES.IPostService) service: IPostService,
+        @inject(POST_TYPES.IPostTransformerRepository) transformer: IPostTransformerRepository
     ) {
         this._service = service;
         this._transformer = transformer;

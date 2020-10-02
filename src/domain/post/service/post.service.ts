@@ -1,5 +1,5 @@
 import { injectable, inject } from "inversify";
-import { HttpClient } from "../../../core/base/http";
+import { HttpClient, HTTP_TYPES } from "../../../core/base/http";
 import { PostEntity } from "../model/post.entity";
 import { CreatePostDTO } from "../dto/create-post-dto";
 
@@ -14,7 +14,7 @@ export class PostService implements IPostService {
     private _http: HttpClient;
 
     constructor(
-        @inject("HttpClient") http: HttpClient
+        @inject(HTTP_TYPES.HttpClient) http: HttpClient
     ) {
         this._http = http;
     }
