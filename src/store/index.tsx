@@ -6,9 +6,6 @@ import { PostStore } from './post/post.store';
 import { Context, createWrapper, MakeStore } from './wrapper';
 
 export const hydrateRoot = (store: RootStore, state: RootStore) => {
-    console.log('Store:', store)
-    console.log(typeof window !== 'undefined')
-    console.log('HYDRATE', state)
     for (const storeKey in state) {
         if (typeof store[storeKey].hydrate === 'function')
             store[storeKey].hydrate(state[storeKey])
@@ -48,6 +45,5 @@ export const makeStore: MakeStore<RootStore> = (context: Context) => createStore
 // export an assembled wrapper
 export const wrapper = createWrapper<RootStore>(makeStore, hydrateRoot, {
     serializeState: state => JSON.stringify(toJS(state)),
-    deserializeState: state => JSON.parse(state),
-    debug: true
+    deserializeState: state => JSON.parse(state)
 });

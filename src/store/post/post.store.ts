@@ -69,7 +69,6 @@ export class PostStore {
 
     hydrate(state: PostStore) {
         if (!state) return;
-        console.log('hydrate');
         this.isPostFetching = state.isPostFetching || false;
         this.post = state.post || null;
         this.postError = state.postError || null;
