@@ -8,15 +8,19 @@ import { PostTransformerRepository, IPostTransformerRepository } from "./domain/
 
 export class AppContainer {
     _container: Container = null;
+    
     constructor() {
         this._container = new Container();
     }
 
-    build() {
+    buildCore() {
         this._container.bind<HttpClient>(HTTP_TYPES.HttpClient).toConstantValue(httpClient);
+    }
+
+    buildPost() {
         this._container.bind<IPostService>(POST_TYPES.IPostService).to(PostService);
         this._container.bind<IPostTransformerRepository>(POST_TYPES.IPostTransformerRepository).to(PostTransformerRepository);
-        this._container.bind<PostStore>(POST_TYPES.PostStore).to(PostStore);
+        this._container.bind<PostStore>(POST_TYPES.PostStore).to(PostStore).inSingletonScope();
     }
 
     getContainer() {

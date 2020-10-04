@@ -1,12 +1,12 @@
+import React, { FC } from 'react';
 import { AppProps } from 'next/app';
 import { AppContainer } from '../app.container';
+import { wrapper } from '../store';
 
 export const appContainer = new AppContainer();
 
-appContainer.build();
+const MyApp: FC<AppProps> = ({ Component, pageProps }) => (
+  <Component {...pageProps} />
+);
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
-}
-
-export default MyApp;
+export default wrapper ? wrapper.withMobx(MyApp) : MyApp;

@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { makeObservable, observable, action } from 'mobx';
 import { injectable, inject } from 'inversify';
 import { POST_TYPES } from "../../domain/post/types";
 import { IPostService } from '../../domain/post/service/post.service';
@@ -38,6 +38,7 @@ export class PostStore {
     ) {
         this._service = service;
         this._transformer = transformer;
+        makeObservable(this);
     }
 
     @action async createPost(post: CreatePostDTO) {
@@ -64,5 +65,17 @@ export class PostStore {
         } catch (error) {
             this.postsError = error;
         }
+    }
+
+    hydrate(state: PostStore) {
+        if (!state) return;
+        console.log('hydrate');
+        this.isPostFetching = state.isPostFetching || false;
+        this.post = state.post || null;
+        this.postError = state.postError || null;
+        this.createPostError = state.createPostError || null;
+        this.isPostsFetching = state.isPostsFetching || false;
+        this.posts = state.posts || [];
+        this.postsError = state.postsError || null;
     }
 }

@@ -18,6 +18,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "experimentalDecorators": true,
+    "useDefineForClassFields": true,
     "emitDecoratorMetadata": true,
     "types": [
       "reflect-metadata"
