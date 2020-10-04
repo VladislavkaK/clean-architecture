@@ -9,4 +9,4 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => (
   <Component {...pageProps} />
 );
 
-export default wrapper ? wrapper.withMobx(MyApp) : MyApp;
+export default wrapper.withMobx(MyApp);

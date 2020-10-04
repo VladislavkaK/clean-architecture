@@ -16,7 +16,7 @@ const IndexPage: FC<any> = observer(({ posts }) => {
         postStore.getAllPosts();
     }
 
-    console.log(postStore?.posts)
+    console.log(postStore.posts)
 
     return (
         <StyledContainer>
