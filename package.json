@@ -10,16 +10,16 @@
     "dependencies": {
         "@types/styled-components": "^5.1.2",
         "@types/yup": "^0.29.4",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "formik": "^2.1.5",
         "inversify": "^5.0.1",
         "mobx": "^6.0.0",
         "mobx-react": "^7.0.0",
-        "next": "^9.5.3",
+        "next": "^10.0.5",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "reflect-metadata": "^0.1.13",
-        "styled-components": "^5.1.1",
+        "styled-components": "^5.2.1",
         "yup": "^0.29.3"
     },
     "devDependencies": {
