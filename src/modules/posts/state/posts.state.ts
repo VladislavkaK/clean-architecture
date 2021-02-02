@@ -1,15 +1,14 @@
 import { makeObservable, observable, action } from 'mobx';
 import { injectable, inject } from 'inversify';
-import { POST_TYPES } from "../../domain/post/types";
-import { IPostService } from '../../domain/post/service/post.service';
-import { PostModel } from '../../domain/post/model/post.model';
-import { IPostTransformerRepository } from '../../domain/post/transform/post.transformer-repository';
-import { CreatePostDTO } from '../../domain/post/dto/create-post-dto';
+import { POST_TYPES, PostModel } from '../types/posts.types';
+import { IPostService } from '../service/posts.service';
+import { CreatePostDTO } from '../types/posts.types';
+import { IPostTransformer } from '../transformer/posts.transformer';
 
 @injectable()
-export class PostStore {
+export class PostState {
     private _service: IPostService;
-    private _transformer: IPostTransformerRepository;
+    private _transformer: IPostTransformer;
 
     @observable
     isPostFetching: boolean = false;
@@ -34,7 +33,7 @@ export class PostStore {
 
     constructor(
         @inject(POST_TYPES.IPostService) service: IPostService,
-        @inject(POST_TYPES.IPostTransformerRepository) transformer: IPostTransformerRepository
+        @inject(POST_TYPES.IPostTransformer) transformer: IPostTransformer
     ) {
         this._service = service;
         this._transformer = transformer;
@@ -67,7 +66,7 @@ export class PostStore {
         }
     }
 
-    hydrate(state: PostStore) {
+    hydrate(state: PostState) {
         if (!state) return;
         this.isPostFetching = state.isPostFetching || false;
         this.post = state.post || null;

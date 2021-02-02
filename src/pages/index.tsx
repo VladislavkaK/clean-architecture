@@ -1,33 +1,31 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import styled from "styled-components";
-import { useStore, wrapper } from '../store';
-import CreatePost from '../features/Home/CreatePost';
-import Posts from '../features/Home/Posts';
-import { CreatePostDTO } from '../domain/post/dto/create-post-dto';
+import { useStore, wrapper } from '../core/store';
+import { CreatePost, Posts, CreatePostDTO } from '../modules/posts';
 
 const StyledContainer = styled.div``;
 
-const IndexPage: FC<any> = observer(({ posts }) => {
-    const { postStore } = useStore();
+const IndexPage = observer<any>(() => {
+    const { postState } = useStore();
+
+    useEffect(() => {
+        postState.getAllPosts();
+    }, [])
 
     const handlePostCreate = async (post: CreatePostDTO) => {
-        await postStore.createPost(post);
-        postStore.getAllPosts();
+        await postState.createPost(post);
+        postState.getAllPosts();
     }
+
+    if (postState.isPostFetching) return 'Loading...';
 
     return (
         <StyledContainer>
             <CreatePost onCreatePost={handlePostCreate} />
-            <Posts posts={posts} />
+            <Posts posts={postState.posts} />
         </StyledContainer>
     )
 });
 
-export const getServerSideProps = wrapper.getServerSideProps(
-    async ({ store }) => {
-        await store.postStore.getAllPosts();
-        return { props: { posts: store.postStore.posts } }
-    }
-);
 export default IndexPage;

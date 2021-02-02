@@ -4,7 +4,7 @@ import {GetServerSideProps, GetStaticProps, NextComponentType, NextPage, NextPag
 import App, {AppContext, AppInitialProps} from 'next/app';
 import {IncomingMessage, ServerResponse} from 'http';
 import {ParsedUrlQuery} from 'querystring';
-import { StoreProvider, RootStore } from '../store';
+import { StoreProvider, RootStore } from './store';
 
 export const HYDRATE = '__NEXT_MOBX_WRAPPER_HYDRATE__';
 export const STOREKEY = '__NEXT_MOBX_WRAPPER_STORE__';
@@ -37,7 +37,6 @@ const initStore = <S extends {} = any>({
     const storeKey = getStoreKey(config);
 
     const createStore = () => {
-        console.log('create store')
         return makeStore(context)
     };
 
@@ -51,10 +50,8 @@ const initStore = <S extends {} = any>({
             if (!req.__nextMobxWrapperStore) req.__nextMobxWrapperStore = createStore();
             return req.__nextMobxWrapperStore;
         }
-        console.log('server')
         return createStore();
     }
-    console.log('client')
     // Memoize store if client
     if (!(storeKey in window)) {
         (window as any)[storeKey] = createStore();

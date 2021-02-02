@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import { useFormik } from "formik";
-import { CreatePostDTO } from "../../../domain/post/dto/create-post-dto";
-import { CreatePostValidator } from "../../../domain/post/validator/create-post.validator";
+import { CreatePostDTO } from "../../types/posts.types";
+import { CreatePostValidator } from "../../validator/posts.validator";
 
 const StyledContainer = styled.div`
     display: flex;

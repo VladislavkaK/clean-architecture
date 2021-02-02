@@ -1,7 +1,6 @@
 import { injectable, inject } from "inversify";
-import { HttpClient, HTTP_TYPES } from "../../../core/base/http";
-import { PostEntity } from "../model/post.entity";
-import { CreatePostDTO } from "../dto/create-post-dto";
+import { HttpClient, HTTP_TYPES } from "../../../core/http";
+import { PostEntity, CreatePostDTO } from "../types/posts.types";
 
 export interface IPostService {
     createPost(post: CreatePostDTO): Promise<PostEntity>;

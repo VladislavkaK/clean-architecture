@@ -1,9 +1,9 @@
-import { toJS } from 'mobx';
 import React, { FC } from 'react';
-import { POST_TYPES } from '../domain/post/types';
+import { toJS } from 'mobx';
+import { POST_TYPES } from '../modules/posts';
 import { appContainer } from '../pages/_app';
-import { PostStore } from './post/post.store';
-import { Context, createWrapper, MakeStore } from './wrapper';
+import { PostState } from '../modules/posts';
+import { Context, createWrapper, MakeStore } from './store-wrapper';
 
 export const hydrateRoot = (store: RootStore, state: RootStore) => {
     for (const storeKey in state) {
@@ -18,15 +18,15 @@ export const createStore = () => {
     appContainer.buildCore();
     appContainer.buildPost();
 
-    const postStore = appContainer.getContainer().get<PostStore>(POST_TYPES.PostStore);
+    const postState = appContainer.getContainer().get<PostState>(POST_TYPES.PostState);
     
     return {
-        postStore,
+        postState,
     }
 }
 
 export const StoreContext = React.createContext<RootStore>({
-    postStore: null,
+    postState: null,
 });
 
 export const StoreProvider: FC<{ store: RootStore }> = ({ store, children }) => {

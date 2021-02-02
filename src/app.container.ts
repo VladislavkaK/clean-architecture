@@ -1,10 +1,7 @@
 import { Container } from "inversify";
 import "reflect-metadata";
-import { HttpClient, HTTP_TYPES, httpClient } from "./core/base/http";
-import { POST_TYPES } from "./domain/post/types";
-import { IPostService, PostService } from "./domain/post/service/post.service";
-import { PostStore } from "./store/post/post.store";
-import { PostTransformerRepository, IPostTransformerRepository } from "./domain/post/transform/post.transformer-repository";
+import { HttpClient, HTTP_TYPES, httpClient } from "./core/http";
+import { POST_TYPES, IPostService, PostService, PostTransformer, IPostTransformer, PostState } from './modules/posts';;
 
 export class AppContainer {
     _container: Container = null;
@@ -19,8 +16,8 @@ export class AppContainer {
 
     buildPost() {
         this._container.bind<IPostService>(POST_TYPES.IPostService).to(PostService);
-        this._container.bind<IPostTransformerRepository>(POST_TYPES.IPostTransformerRepository).to(PostTransformerRepository);
-        this._container.bind<PostStore>(POST_TYPES.PostStore).to(PostStore).inSingletonScope();
+        this._container.bind<IPostTransformer>(POST_TYPES.IPostTransformer).to(PostTransformer);
+        this._container.bind<PostState>(POST_TYPES.PostState).to(PostState).inSingletonScope();
     }
 
     getContainer() {

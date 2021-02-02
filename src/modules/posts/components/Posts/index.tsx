@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { PostModel } from "../../../domain/post/model/post.model";
+import { PostModel } from "../../types/posts.types";
 
 const StyledContainer = styled.div`
     display: grid;

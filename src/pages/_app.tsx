@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { AppProps } from 'next/app';
 import { AppContainer } from '../app.container';
-import { wrapper } from '../store';
+import { wrapper } from '../core/store';
 
 export const appContainer = new AppContainer();
 
