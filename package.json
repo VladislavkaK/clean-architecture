@@ -8,6 +8,7 @@
         "start": "next start"
     },
     "dependencies": {
+        "@geist-ui/react": "^2.1.0-canary.2",
         "@types/styled-components": "^5.1.2",
         "@types/yup": "^0.29.4",
         "axios": "^0.21.1",

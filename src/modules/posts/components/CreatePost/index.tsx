@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
+import { Button } from '@geist-ui/react';
 import { useFormik } from "formik";
 import { CreatePostDTO } from "../../types/posts.types";
 import { CreatePostValidator } from "../../validator/posts.validator";
@@ -60,7 +61,7 @@ const CreatePost: FC<CreatePostProps> = ({
                     {formik.touched.userId && formik.errors.userId && (
                         <div>{formik.errors.userId}</div>
                     )}
-                    <button type="submit">Создать</button>
+                    <Button shadow type="secondary">Создать</Button>
                 </StyledFormContainer>
             </form>
         </StyledContainer>
