@@ -9,6 +9,7 @@ const StyledContainer = styled.div``;
 const IndexPage = observer<any>(() => {
     const { postState } = useStore();
     console.log(postState);
+    
     useEffect(() => {
         postState.getAllPosts();
     }, [])
