@@ -9,10 +9,10 @@ const StyledContainer = styled.div``;
 const IndexPage = observer<any>(() => {
     const { postState } = useStore();
     console.log(postState);
-    
+
     useEffect(() => {
         postState.getAllPosts();
-    }, [])
+    }, []);
 
     const handlePostCreate = async (post: CreatePostDTO) => {
         await postState.createPost(post);
